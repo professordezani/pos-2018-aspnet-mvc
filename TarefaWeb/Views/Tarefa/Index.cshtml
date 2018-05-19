@@ -1,0 +1,26 @@
+﻿@model IEnumerable<TarefaWeb.Models.Tarefa>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <table>
+        @foreach (var t in Model)
+        {
+        <tr>
+            <td>@t.TarefaId</td>
+            <td>@t.Nome</td>
+            <td>@t.Concluida</td>
+            <td>@t.Data</td>
+        </tr>
+        }
+    </table>
+</body>
+</html>
