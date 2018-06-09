@@ -1,0 +1,27 @@
+﻿@model TarefaWeb.Models.Tarefa
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <title>Update</title>
+</head>
+<body>
+    @using (Html.BeginForm("Update", "Tarefa", FormMethod.Post))
+    {
+
+        <div class="form-group">
+            @Html.DisplayNameFor(m => m.Nome)
+            @Html.TextBoxFor(m => m.Nome, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Nome)
+        </div>
+
+        <button class="btn btn-primary">Salvar</button>
+    }
+</body>
+</html>

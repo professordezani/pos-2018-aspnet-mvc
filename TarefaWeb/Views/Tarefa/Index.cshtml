@@ -19,8 +19,11 @@
             <td>@t.Nome</td>
             <td>@t.Concluida</td>
             <td>@t.Data</td>
+            <td>@Html.ActionLink("Editar", "Update", new { id = t.TarefaId })</td>
         </tr>
         }
     </table>
+
+    <a href="/Tarefa/Create">Adicionar</a>
 </body>
 </html>

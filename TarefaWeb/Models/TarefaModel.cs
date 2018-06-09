@@ -53,5 +53,45 @@ namespace TarefaWeb.Models
 
             return lista;
         }
+
+        public void Create(Tarefa t)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "INSERT INTO Tarefa VALUES (@nome, @concluida, @data)";
+
+            cmd.Parameters.AddWithValue("@nome", t.Nome);
+            cmd.Parameters.AddWithValue("@concluida", t.Concluida);
+            cmd.Parameters.AddWithValue("@data", t.Data);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public Tarefa Read(int id)
+        {
+            Tarefa t = null;
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = @"SELECT * FROM Tarefa
+                                WHERE TarefaId = @id";
+
+            cmd.Parameters.AddWithValue("@id", id);
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                t = new Tarefa
+                {
+                    TarefaId = reader.GetInt32(0),
+                    Nome = reader.GetString(1),
+                    Concluida = (bool)reader["Concluida"],
+                    Data = (DateTime)reader["Data"]
+                };
+            }
+
+            return t;
+        }
     }
 }

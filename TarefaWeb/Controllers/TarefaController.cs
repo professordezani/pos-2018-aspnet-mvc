@@ -21,17 +21,45 @@ namespace TarefaWeb.Controllers
             } //model.Dispose();
         }
 
-        [HttpPost]
-        [Route("/teste")]
-        // GET: Tarefa
-        public ActionResult Index(int id)
+        public JsonResult Lista()
         {
             using (TarefaModel model = new TarefaModel())
-            {
-                List<Tarefa> lista = model.Read();
-                return View(lista);
+                return Json(model.Read(), JsonRequestBehavior.AllowGet);
+        }
 
-            } //model.Dispose();
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Tarefa t)
+        {
+            if (ModelState.IsValid)
+            {
+                t.Concluida = false;
+                t.Data = DateTime.Now;
+
+                using (TarefaModel model = new TarefaModel())
+                {
+                    model.Create(t);
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                ViewBag.Erro = "Preencha a descrição da tarefa.";
+                return View();
+            }
+        }
+
+        public ActionResult Update(int id)
+        {
+            using(TarefaModel model = new TarefaModel())
+            {
+                return View(model.Read(id));
+            }
         }
     }
 }
