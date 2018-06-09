@@ -67,6 +67,31 @@ namespace TarefaWeb.Models
             cmd.ExecuteNonQuery();
         }
 
+        public void Update(Tarefa t)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = @"UPDATE Tarefa SET Nome = @nome, Concluida = @concluida
+                                    WHERE TarefaId = @id";
+
+            cmd.Parameters.AddWithValue("@nome", t.Nome);
+            cmd.Parameters.AddWithValue("@concluida", t.Concluida);
+            cmd.Parameters.AddWithValue("@id", t.TarefaId);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public void Delete(int id)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "DELETE FROM Tarefa WHERE TarefaId = @id";
+
+            cmd.Parameters.AddWithValue("@id", id);
+
+            cmd.ExecuteNonQuery();
+        }
+
         public Tarefa Read(int id)
         {
             Tarefa t = null;

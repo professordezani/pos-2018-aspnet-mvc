@@ -14,11 +14,22 @@
 <body>
     @using (Html.BeginForm("Update", "Tarefa", FormMethod.Post))
     {
+        @Html.HiddenFor(m => m.TarefaId)
 
         <div class="form-group">
             @Html.DisplayNameFor(m => m.Nome)
             @Html.TextBoxFor(m => m.Nome, new {@class = "form-control"})
             @Html.ValidationMessageFor(m => m.Nome)
+        </div>
+
+        <div class="form-group">
+            @Html.DisplayNameFor(m => m.Concluida)
+            @Html.CheckBoxFor(m => m.Concluida)
+        </div>   
+        
+        <div class="form-group">
+            @Html.DisplayNameFor(m => m.Data)
+            @Html.TextBoxFor(m => m.Data, new {@type = "date" })
         </div>
 
         <button class="btn btn-primary">Salvar</button>

@@ -20,6 +20,9 @@
             <td>@t.Concluida</td>
             <td>@t.Data</td>
             <td>@Html.ActionLink("Editar", "Update", new { id = t.TarefaId })</td>
+            <td>
+                <a href="/Tarefa/Delete/@t.TarefaId">Apagar</a>
+            </td>
         </tr>
         }
     </table>

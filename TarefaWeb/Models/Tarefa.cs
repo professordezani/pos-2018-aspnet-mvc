@@ -12,7 +12,7 @@ namespace TarefaWeb.Models
     {
         public int TarefaId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Por favor, preencha a descrição de sua tarefa")]
         [Display(Name ="Descrição")]
         public string Nome { get; set; }
 

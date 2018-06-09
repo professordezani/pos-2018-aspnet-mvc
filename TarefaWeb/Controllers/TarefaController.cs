@@ -61,5 +61,31 @@ namespace TarefaWeb.Controllers
                 return View(model.Read(id));
             }
         }
+
+        [HttpPost]
+        public ActionResult Update(int id, Tarefa t)
+        {
+            if(ModelState.IsValid)
+            {
+                using(TarefaModel model = new TarefaModel())
+                {
+                    model.Update(t);
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                return View(t);
+            }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            using(TarefaModel model = new TarefaModel())
+            {
+                model.Delete(id);
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
